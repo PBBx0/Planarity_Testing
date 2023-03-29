@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.24"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "planar-graphs-project",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "generator::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-generator-Debug-8d0d932b2256fc47a889.json",
+					"name" : "generator",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "generator2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-generator2-Debug-9f3fcf6952a52eb8bca2.json",
+					"name" : "generator2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "planar-graphs-project::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-planar-graphs-project-Debug-68c97dc192cd4801e00e.json",
+					"name" : "planar-graphs-project",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/pbb/programs/aesc_homework/planar-graphs-project/cmake-build-debug",
+		"source" : "/home/pbb/programs/aesc_homework/planar-graphs-project"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

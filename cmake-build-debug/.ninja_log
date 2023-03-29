@@ -1,0 +1,8 @@
+# ninja log v5
+0	38	1680112796571859957	build.ninja	fc10cce8b6f33773
+11	2124	1680106862274735058	CMakeFiles/generator2.dir/rectangle_grid_generator.cpp.o	3de8bf5e3f029e5c
+2124	2200	1680106862349734115	generator2	bb1acdcfe19a65a8
+1	4085	1680107676252501971	CMakeFiles/planar-graphs-project.dir/main.cpp.o	3edd46d50fbecce
+0	3371	1680087533510552072	CMakeFiles/generator.dir/graph_generator.cpp.o	d41e569c0ed9224a
+3371	3485	1680087533623550652	generator	989b4c5cb8c91c99
+4086	4195	1680107676364500563	planar-graphs-project	fe6d122603d2c283

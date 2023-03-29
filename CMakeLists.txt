@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.24)
+project(planar-graphs-project)
+
+set(CMAKE_CXX_STANDARD 20)
+add_compile_definitions(LOCAL)
+#add_compile_definitions(_GLIBCXX_DEBUG)
+set(CMAKE_CXX_FLAGS -O3)
+add_executable(planar-graphs-project main.cpp)
+add_executable(generator graph_generator.cpp)
+add_executable(generator2 rectangle_grid_generator.cpp)

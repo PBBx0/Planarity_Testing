@@ -1,0 +1,5 @@
+/home/pbb/programs/aesc_homework/planar-graphs-project/cmake-build-debug/CMakeFiles/planar-graphs-project.dir
+/home/pbb/programs/aesc_homework/planar-graphs-project/cmake-build-debug/CMakeFiles/generator.dir
+/home/pbb/programs/aesc_homework/planar-graphs-project/cmake-build-debug/CMakeFiles/generator2.dir
+/home/pbb/programs/aesc_homework/planar-graphs-project/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/pbb/programs/aesc_homework/planar-graphs-project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
