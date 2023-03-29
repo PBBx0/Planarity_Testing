@@ -2,7 +2,7 @@
 #define sz(n) (int)(n).size()
 using namespace std;
 const int N = 10000, M = 50000;
-unordered_set<int> g[N];
+set<int> g[N];
 int col[N], h[N], dp[N];
 int n, m;
 long start_time;
@@ -48,7 +48,7 @@ void calc_dp(int v) {
 int color2 = 0;
 vector<int> vtx, g2[N];
 int E[M], stat[M], col2[N];
-unordered_set<int> vtx_set, placed;
+set<int> vtx_set, placed;
 bool find_path(int v, int targ, vector<int> & cur_path) {
     col2[v] = color2;
     for (int id : g2[v]) if (id != cur_path.back()) {
