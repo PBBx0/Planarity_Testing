@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/pbb/programs/aesc_homework/planar-graphs-project/cmake-build-debug"
+			"value" : "/home/pbb/programs/aesc_homework/Planarity_Testing/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -543,7 +543,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/pbb/programs/aesc_homework/planar-graphs-project/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "/home/pbb/programs/aesc_homework/Planarity_Testing/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -603,7 +603,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/pbb/programs/aesc_homework/planar-graphs-project"
+			"value" : "/home/pbb/programs/aesc_homework/Planarity_Testing"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1147,7 +1147,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/pbb/programs/aesc_homework/planar-graphs-project/cmake-build-debug"
+			"value" : "/home/pbb/programs/aesc_homework/Planarity_Testing/cmake-build-debug"
 		},
 		{
 			"name" : "planar-graphs-project_IS_TOP_LEVEL",
@@ -1171,7 +1171,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/pbb/programs/aesc_homework/planar-graphs-project"
+			"value" : "/home/pbb/programs/aesc_homework/Planarity_Testing"
 		}
 	],
 	"kind" : "cache",

@@ -67,8 +67,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/pbb/programs/aesc_homework/planar-graphs-project/cmake-build-debug",
-		"source" : "/home/pbb/programs/aesc_homework/planar-graphs-project"
+		"build" : "/home/pbb/programs/aesc_homework/Planarity_Testing/cmake-build-debug",
+		"source" : "/home/pbb/programs/aesc_homework/Planarity_Testing"
 	},
 	"version" : 
 	{

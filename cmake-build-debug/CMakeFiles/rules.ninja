@@ -80,7 +80,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /app/extra/clion/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/pbb/programs/aesc_homework/planar-graphs-project -B/home/pbb/programs/aesc_homework/planar-graphs-project/cmake-build-debug
+  command = /app/extra/clion/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/pbb/programs/aesc_homework/Planarity_Testing -B/home/pbb/programs/aesc_homework/Planarity_Testing/cmake-build-debug
   description = Re-running CMake...
   generator = 1
 
