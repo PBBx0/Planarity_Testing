@@ -235,13 +235,14 @@ void solve() {
         int a, b;
         cin >> a >> b;
         a--, b--;
+        if (a == b) continue;
         g[a].insert(b);
         g[b].insert(a);
     }
     int edges = 0;
     for (int v = 0; v < n; ++v) edges += sz(g[v]);
     edges /= 2;
-    if (edges > 3 * n - 6) {
+    if (edges > 3 * n) {
         output_result(false);
     }
     for (int v = 0; v < n; ++v) if (col[v] == 0) find_bridges(v, v);

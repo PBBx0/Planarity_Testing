@@ -23,7 +23,7 @@ signed main() {
     cout << n << ' ' << m << '\n';
     assert(m >= n - 1);
     fill(dsu, dsu + n, -1);
-    for (int c = n; c > 1;) {
+    for (int c = n; c >  1;) {
         int a = rnd() % n;
         int b = rnd() % n;
         if (unite(a, b)) {
