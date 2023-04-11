@@ -239,12 +239,6 @@ void solve() {
         g[a].insert(b);
         g[b].insert(a);
     }
-    int edges = 0;
-    for (int v = 0; v < n; ++v) edges += sz(g[v]);
-    edges /= 2;
-    if (edges > 3 * n) {
-        output_result(false);
-    }
     for (int v = 0; v < n; ++v) if (col[v] == 0) find_bridges(v, v);
     for (auto [u, v] : bridges) {
         g[u].erase(v);
