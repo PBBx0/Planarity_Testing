@@ -11,6 +11,5 @@ if "not" in output:
     exit(0)
 r2 = run("./embed", input=inp.encode(), check=True, capture_output=True)
 inp = f'{inp}\n{r2.stdout.decode()}'
-print(r2.stderr.decode())
 run("python3 draw.py", shell=True, input=inp.encode(), check=True)
 
