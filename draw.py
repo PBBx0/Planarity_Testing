@@ -1,33 +1,28 @@
-import pyglet
-import pyglet.shapes as shapes
-width, height = 1000, 1000
-window = pyglet.window.Window(width, height)
-background = pyglet.image.SolidColorImagePattern((255, 255, 255, 255)).create_image(width,height)
-batch = pyglet.graphics.Batch()
-BLACK = (0, 0, 0)
-line_width, node_size = 2, 5
-n, m = map(int, input().split())
-edges = []
-for i in range(m):
-    a, b = map(int, input().split())
-    edges.append((a, b))
-coords = []
-for i in range(n):
-    x, y = map(int, input().split())
-    coords.append((x, y))
-nodes, lines = [], []
-for i in range(n):
-    x, y = coords[i]
-    nodes.append(shapes.Circle(x, y, node_size, color=BLACK, batch=batch))
-for i in range(m):
-    a, b = edges[i]
-    x1, y1 = coords[a - 1]
-    x2, y2 = coords[b - 1]
-    lines.append(shapes.Line(x1, y1, x2, y2, width=line_width, color=BLACK, batch=batch))
-@window.event
-def on_draw():
-    window.clear()
-    background.blit(0, 0)
-    batch.draw()
+import matplotlib.pyplot as plt
 
-pyglet.app.run()
+
+def parse_input(inp):
+    lst = list(map(int, inp.split()))
+    n, m = lst[0], lst[1]
+    edges, x, y = [], [], []
+    for i in range(2, 2 + m + m, 2):
+        edges.append((lst[i], lst[i + 1]))
+    for i in range(m + m + 2, len(lst), 2):
+        x.append(lst[i])
+        y.append(lst[i + 1])
+    return n, m, edges, x, y
+
+
+def plot_planar_graph(inp):
+    n, m, edges, x, y = parse_input(inp)
+    plt.clf()
+    plt.axis('off')
+    plt.scatter(x, y, color='red')
+    for a, b in edges:
+        plt.plot([x[a - 1], x[b - 1]], [y[a - 1], y[b - 1]], color='black')
+    for i in range(n):
+        plt.annotate(f'{i + 1}', (x[i], y[i]), (x[i] + 10, y[i] + 10), color='blue')
+
+
+def save_pic(filename="mygraph.png"):
+    plt.savefig(filename)

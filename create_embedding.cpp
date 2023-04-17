@@ -6,7 +6,7 @@ mt19937 rnd(chrono::high_resolution_clock::now().time_since_epoch().count());
 uniform_real_distribution<> dist(0, 1);
 using ll = int64_t;
 using ld = long double;
-constexpr ll MAXD = 1e3;
+constexpr ll MAXD = 993;
 constexpr int EPOCH = 10000, ITER = 10000;
 constexpr ld alpha = 0, PERFECT_LEN = 100;
 set<pair<ll, ll>> all_points;
@@ -50,7 +50,8 @@ inline ll sign(ll x) {
 inline bool on_segment(vec & a, vec & b, vec & x) {
     return ((b - a) ^ (x - a)) == 0 && (a - x) * (b - x) <= 0;
 }
-inline int penalty(vec & a, vec & b, vec & c, vec & d) { //check if segments AB and CD have common point and return penalty
+//check if segments AB and CD have common point and return penalty
+inline int penalty(vec & a, vec & b, vec & c, vec & d) {
     if (on_segment(a, b, c) || on_segment(a, b, d) || on_segment(c, d, a) || on_segment(c, d, b)) return 100;
     ll r1 = (c - a) ^ (b - a), r2 = (d - a) ^ (b - a);
     ll r3 = (b - c) ^ (d - c), r4 = (a - c) ^ (d - c);
