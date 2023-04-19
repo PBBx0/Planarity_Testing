@@ -20,4 +20,4 @@ for test in tests:
     inp = f'{inp}\n{r2.stdout.decode()}'
     draw.plot_planar_graph(inp)
     filename = test.split('.')[0]
-    draw.save_pic(f'./plots/{filename}')
+    draw.save_pic(f'./plots/{filename}.svg')

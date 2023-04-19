@@ -24,5 +24,5 @@ def plot_planar_graph(inp):
         plt.annotate(f'{i + 1}', (x[i], y[i]), (x[i] + 10, y[i] + 10), color='blue')
 
 
-def save_pic(filename="mygraph.png"):
+def save_pic(filename="mygraph.svg"):
     plt.savefig(filename)
