@@ -1,0 +1,87 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.24"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "planar-graphs-project",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "embed::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-embed-Debug-a31daf1a160091525380.json",
+					"name" : "embed",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "grid_generator::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-grid_generator-Debug-40005477629410f2982e.json",
+					"name" : "grid_generator",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "random_generator::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-random_generator-Debug-f7045563e970283d88e5.json",
+					"name" : "random_generator",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "solve::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-solve-Debug-251975405f446a6cd558.json",
+					"name" : "solve",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/pbb/programs/aesc_homework/Planarity_Testing/cmake-build-debug",
+		"source" : "/home/pbb/programs/aesc_homework/Planarity_Testing"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

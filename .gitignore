@@ -1,8 +1,4 @@
 .git/
 .idea/
-cmake-build-debug/
-gen
-solve
-embed
 __pycache__/
 

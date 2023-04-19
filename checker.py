@@ -4,7 +4,7 @@ import os, draw
 tests = os.listdir("./tests")
 for test in tests:
     inp = open(f'./tests/{test}', 'r').read()
-    r1 = run("./solve", input=inp.encode(), check=True, capture_output=True, timeout=5.0)
+    r1 = run("cmake-build-debug/solve", input=inp.encode(), check=True, capture_output=True, timeout=5.0)
     output = r1.stdout.decode()
     old_output = open(f'./answers/{test}', 'r').read()
     if old_output == "":
@@ -16,7 +16,7 @@ for test in tests:
 
     if "not" in output:
         continue
-    r2 = run("./embed", input=inp.encode(), check=True, capture_output=True)
+    r2 = run("cmake-build-debug/embed", input=inp.encode(), check=True, capture_output=True)
     inp = f'{inp}\n{r2.stdout.decode()}'
     draw.plot_planar_graph(inp)
     filename = test.split('.')[0]
