@@ -1,6 +1,9 @@
+import math
 from subprocess import run
 import os, draw
 import matplotlib.pyplot as plt
+import numpy
+
 run(["g++", "-std=c++20", "-O3", "main.cpp", "-o", "solve"])
 tests = os.listdir("./tests")
 x, y = [], []
@@ -22,3 +25,8 @@ for test in tests:
     draw.plot_planar_graph(inp)
     filename = test.split('.')[0]
     draw.save_pic(f'./plots/{filename}.svg')
+plt.clf()
+plt.xlabel("Количество вершин в графе")
+plt.ylabel("Время работы в миллисекундах")
+plt.plot(x, y)
+plt.savefig("time effiquency.png")

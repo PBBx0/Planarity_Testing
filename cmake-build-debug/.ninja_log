@@ -1,13 +1,12 @@
 # ninja log v5
-3	60	1682363525221066875	build.ninja	a86d148250a47cee
+3	60	1682364261575809642	build.ninja	a86d148250a47cee
 3386	3488	1682358981554188503	solve	8d7b73df63cee546
 0	2044	1681895505967591616	CMakeFiles/grid_generator.dir/generators/rectangle_grid_generator.cpp.o	1c537da470c18074
 0	4989	1681331122746361197	CMakeFiles/planar-graphs-project.dir/main.cpp.o	7fa913ccd8d018a2
 3	2483	1681745691487765622	CMakeFiles/grid_generator.dir/rectangle_grid_generator.cpp.o	d6773f95e8024efe
 0	2333	1681722808788682110	CMakeFiles/draw.dir/create_embedding.cpp.o	c61d8beaa424f75d
-2044	2141	1681895506064590396	grid_generator	9074f80948f0252d
+3240	3342	1682363601990101758	grid_generator	2b0b3c2a7426f6b9
+0	3240	1682363601889103027	CMakeFiles/grid_generator.dir/util/rectangle_grid_generator.cpp.o	bf90a4da2a0dd653
 1	2870	1681719759464480026	CMakeFiles/draw.dir/try_draw.cpp.o	af27dd361844d42e
 2	2238	1681746865169010450	CMakeFiles/embed.dir/create_embedding.cpp.o	6ca8b7c810c10aa6
 2	3386	1682358981451189798	CMakeFiles/solve.dir/main.cpp.o	b5f76b4343f6f32b
-0	3240	1682363601889103027	CMakeFiles/grid_generator.dir/util/rectangle_grid_generator.cpp.o	bf90a4da2a0dd653
-3240	3342	1682363601990101758	grid_generator	2b0b3c2a7426f6b9
