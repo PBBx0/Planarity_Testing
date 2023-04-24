@@ -1,5 +1,4 @@
 /home/pbb/programs/aesc_homework/Planarity_Testing/cmake-build-debug/CMakeFiles/solve.dir
-/home/pbb/programs/aesc_homework/Planarity_Testing/cmake-build-debug/CMakeFiles/embed.dir
 /home/pbb/programs/aesc_homework/Planarity_Testing/cmake-build-debug/CMakeFiles/random_generator.dir
 /home/pbb/programs/aesc_homework/Planarity_Testing/cmake-build-debug/CMakeFiles/grid_generator.dir
 /home/pbb/programs/aesc_homework/Planarity_Testing/cmake-build-debug/CMakeFiles/edit_cache.dir

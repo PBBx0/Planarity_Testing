@@ -1,27 +1,29 @@
 import matplotlib.pyplot as plt
+import networkx as nx
 
 
 def parse_input(inp):
     lst = list(map(int, inp.split()))
     n, m = lst[0], lst[1]
-    edges, x, y = [], [], []
+    nodes, edges = [], []
+    for i in range(1, n + 1):
+        nodes.append(i)
     for i in range(2, 2 + m + m, 2):
         edges.append((lst[i], lst[i + 1]))
-    for i in range(m + m + 2, len(lst), 2):
-        x.append(lst[i])
-        y.append(lst[i + 1])
-    return n, m, edges, x, y
+    return n, m, nodes, edges
 
 
 def plot_planar_graph(inp):
-    n, m, edges, x, y = parse_input(inp)
     plt.clf()
-    plt.axis('off')
-    plt.scatter(x, y, color='red')
-    for a, b in edges:
-        plt.plot([x[a - 1], x[b - 1]], [y[a - 1], y[b - 1]], color='black')
-    for i in range(n):
-        plt.annotate(f'{i + 1}', (x[i], y[i]), (x[i] + 10, y[i] + 10), color='blue')
+    n, m, nodes, edges = parse_input(inp)
+    G = nx.Graph()
+    G.add_nodes_from(nodes)
+    G.add_edges_from(edges)
+    # Get embedding
+    is_planar, embedding = nx.check_planarity(G)
+    assert is_planar
+    pos = nx.combinatorial_embedding_to_pos(embedding)
+    nx.draw(G, pos=pos, with_labels=True, node_color='red')
 
 
 def save_pic(filename="mygraph.svg"):

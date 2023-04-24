@@ -73,38 +73,6 @@ build solve: CXX_EXECUTABLE_LINKER__solve_Debug CMakeFiles/solve.dir/main.cpp.o
   TARGET_PDB = solve.dbg
 
 # =============================================================================
-# Object build statements for EXECUTABLE target embed
-
-
-#############################################
-# Order-only phony target for embed
-
-build cmake_object_order_depends_target_embed: phony || CMakeFiles/embed.dir
-
-build CMakeFiles/embed.dir/create_embedding.cpp.o: CXX_COMPILER__embed_Debug /home/pbb/programs/aesc_homework/Planarity_Testing/create_embedding.cpp || cmake_object_order_depends_target_embed
-  DEFINES = -DLOCAL -D_GLIBCXX_DEBUG
-  DEP_FILE = CMakeFiles/embed.dir/create_embedding.cpp.o.d
-  FLAGS = -g -fdiagnostics-color=always -std=gnu++20
-  OBJECT_DIR = CMakeFiles/embed.dir
-  OBJECT_FILE_DIR = CMakeFiles/embed.dir
-
-
-# =============================================================================
-# Link build statements for EXECUTABLE target embed
-
-
-#############################################
-# Link the executable embed
-
-build embed: CXX_EXECUTABLE_LINKER__embed_Debug CMakeFiles/embed.dir/create_embedding.cpp.o
-  FLAGS = -g
-  OBJECT_DIR = CMakeFiles/embed.dir
-  POST_BUILD = :
-  PRE_LINK = :
-  TARGET_FILE = embed
-  TARGET_PDB = embed.dbg
-
-# =============================================================================
 # Object build statements for EXECUTABLE target random_generator
 
 
@@ -202,7 +170,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /home/pbb/programs/aesc_homework/Planarity_Testing/cmake-build-debug
 
-build all: phony solve embed random_generator grid_generator
+build all: phony solve random_generator grid_generator
 
 # =============================================================================
 # Built-in targets

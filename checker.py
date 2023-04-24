@@ -16,8 +16,6 @@ for test in tests:
 
     if "not" in output:
         continue
-    r2 = run("cmake-build-debug/embed", input=inp.encode(), check=True, capture_output=True)
-    inp = f'{inp}\n{r2.stdout.decode()}'
     draw.plot_planar_graph(inp)
     filename = test.split('.')[0]
     draw.save_pic(f'./plots/{filename}.svg')
