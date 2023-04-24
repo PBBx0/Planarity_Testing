@@ -175,6 +175,7 @@ bool check(int c) {
         for (int v: vtx) edges_cnt += sz(g2[v]);
         int n_cur = sz(vtx);
         edges_cnt /= 2;
+        if (edges_cnt + 1 == n_cur) return true;
         if (edges_cnt > 3 * n_cur - 6) return false;
     }
     vector<Face> faces;
@@ -238,13 +239,11 @@ bool check(int c) {
         int targ = *touch.begin();
         if (targ == v_start) targ = *touch.rbegin();
         /* now we want to add path v_start -> targ to our embedding */
-        if (!placed.contains(v_start ^ E[id_start]))
-            paint_segment(v_start ^ E[id_start], 0, touch);
+        if (!placed.contains(v_start ^ E[id_start])) paint_segment(v_start ^ E[id_start], 0, touch);
         vector<int> cur_path{id_start};
         max_color2++;
         /* if our path is not a single edge we call find_path */
-        if (!placed.contains(v_start ^ E[id_start]))
-            assert(find_path(v_start ^ E[id_start], targ, cur_path));
+        if (!placed.contains(v_start ^ E[id_start])) assert(find_path(v_start ^ E[id_start], targ, cur_path));
         /* we list all vertexes of path to path_vtx */
         int cur_v = v_start;
         vector<int> path_vtx{cur_v};
