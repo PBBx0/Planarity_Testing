@@ -14,7 +14,7 @@ int color[N], height[N], dp[N];
 int n, m;
 long start_time;
 /*
- * this function is used to just output result. nothing interesting
+ * This function is used to just output result. nothing interesting
  */
 void output_result(bool planar) {
     cout << "The given graph is" << (planar ? " " : " not ") << "planar" << '\n';
@@ -22,7 +22,7 @@ void output_result(bool planar) {
     exit(0);
 }
 /*
- * this function is used to recursively (with depth-first-search) paint connectivity component to color c
+ * This function is used to recursively (with depth-first-search) paint connectivity component to color c
  * CAUTION: at the moment of call all vertexes in component must have color[v] != c
  */
 void paint_component(int v, int c) {
@@ -32,7 +32,7 @@ void paint_component(int v, int c) {
     }
 }
 /*
- * code below is used to find all bridges in the connectivity component at linear time
+ * Code below is used to find all bridges in the connectivity component at linear time
  * it recursively (with depth-first-search) calculates dp[v] and determines if the edge is bridge
  * CAUTION: at the moment of call all vertexes in component must have color[v] == 0
  */
@@ -52,7 +52,7 @@ void find_bridges(int v, int parent) {
     }
 }
 /*
- * this function does what it states:
+ * This function does what it states:
  * it recursively (with depth-first-search) calculates dp[v]
  * CAUTION: at the moment of call all vertexes in component must have color[v] == 0
  */
@@ -70,7 +70,7 @@ void calculate_dp(int v) {
     }
 }
 /*
- * code below is used to check if two-connected component planar
+ * Code below is used to check if two-connected component planar
  *
  * max_color2 is max_color2
  * vtx is vector of all vertexes that belongs to current two-connected component
@@ -89,7 +89,8 @@ vector<int> vtx, g2[N];
 int E[M], state[M], color2[N];
 set<int> vtx_set, placed;
 /*
- * 
+ * This function is used to recursively (with depth-first-search) find path from v to targ and save its edges to cur_path
+ * return value is true if path is found and false otherwise
  */
 bool find_path(int v, int targ, vector<int> & cur_path) {
     color2[v] = max_color2;
@@ -107,14 +108,23 @@ bool find_path(int v, int targ, vector<int> & cur_path) {
     }
     return false;
 }
+/*
+ * This function is used to make stat[e] = c, e in segment edges
+ * it also stores all touching vertexes of segment to touching_vtx
+ */
 void paint_segment(int v, int c, set<int> & touching_vtx) {
     for (int id : g2[v]) if (state[id] != c) {
-            state[id] = c;
+        state[id] = c;
         int to = v ^ E[id];
         if (!placed.contains(to)) paint_segment(to, c, touching_vtx);
         else touching_vtx.insert(to);
     }
 }
+/*
+ * It is what you think it is
+ * struct that describes Faces
+ * each Face has vts --- set of its vertexes and tour --- its vertexes in correct order
+ */
 struct Face {
     set<int> vts;
     vector<int> tour;
@@ -123,13 +133,24 @@ struct Face {
     }
     Face() = default;
 };
+/*
+ * And this struct describes Segments
+ * each Segment has a start_vertex and a start_edge --- v_start and id_start respectively
+ * good_faces is a list of all faces that fit to him
+ * touch is a set of its touching vertexes
+ */
 struct Segment {
     set<int> touch;
     vector<int> good_faces;
     int v_start, id_start;
     Segment(int v, int id) : v_start(v), id_start(id) {}
 };
+/*
+ * This is most important (and the longest) function
+ * it checks if current two-connected component (its vertexes should be colored with c) is planar
+ */
 bool check(int c) {
+    /* Initializing */
     vtx.clear();
     vtx_set.clear();
     placed.clear();
@@ -149,12 +170,14 @@ bool check(int c) {
             top++;
         }
     }
-    int edges_cnt = 0;
-    for (int v : vtx) edges_cnt += sz(g2[v]);
-    int n_cur = sz(vtx);
-    edges_cnt /= 2;
-    if (edges_cnt + 1 == n_cur) return true;
-    if (edges_cnt > 3 * n_cur - 6) return false;
+    { /* For planar two-connected graph m <= 3n - 6. Checking this. */
+        int edges_cnt = 0;
+        for (int v: vtx) edges_cnt += sz(g2[v]);
+        int n_cur = sz(vtx);
+        edges_cnt /= 2;
+        if (edges_cnt + 1 == n_cur) return true;
+        if (edges_cnt > 3 * n_cur - 6) return false;
+    }
     vector<Face> faces;
     { /* ADDING PRIMARY CYCLE AND FACES */
         vector<int> cur_path, cycle;
