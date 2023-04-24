@@ -179,7 +179,7 @@ bool check(int c) {
         if (edges_cnt > 3 * n_cur - 6) return false;
     }
     vector<Face> faces;
-    { /* ADDING PRIMARY CYCLE AND FACES */
+    { /* Adding primary cycle and faces */
         vector<int> cur_path, cycle;
         int v = vtx[0];
         assert(!g2[v].empty());
@@ -196,7 +196,7 @@ bool check(int c) {
         faces.emplace_back(cycle);
     }
     vector<Segment> segments;
-    { /* COMPUTING SEGMENTS */
+    { /* Computing segments */
         for (int v : placed) {
             for (int id : g2[v]) if (state[id] == 0) {
                 segments.emplace_back(v, id);
@@ -211,8 +211,10 @@ bool check(int c) {
         }
     }
     while (!segments.empty()) {
+        /* COMMON STEP */
         int id = 0;
         int s = sz(segments);
+        /* For each segment s we compute Gamma(s) (segments[i].good_faces) */
         for (int i = 0; i < s; ++i) {
             segments[i].good_faces.clear();
             for (int j = 0; j < sz(faces); ++j) {
@@ -227,25 +229,31 @@ bool check(int c) {
                     segments[i].good_faces.emplace_back(j);
                 }
             }
+            /* we want to find id that sz(segments[id].good_faces) is minimal */
             if (sz(segments[i].good_faces) < sz(segments[id].good_faces)) id = i;
         }
+        /* if |Gamma(s)| == 0 our graph is not planar */
         if (segments[id].good_faces.empty()) return false;
         swap(segments[id], segments[s - 1]);
         auto & [touch, good_faces, v_start, id_start] = segments.back();
         int targ = *touch.begin();
         if (targ == v_start) targ = *touch.rbegin();
+        /* now we want to add path v_start -> targ to our embedding */
         if (!placed.contains(v_start ^ E[id_start])) paint_segment(v_start ^ E[id_start], 0, touch);
         vector<int> cur_path{id_start};
         max_color2++;
+        /* if our path is not a single edge we call find_path */
         if (!placed.contains(v_start ^ E[id_start])) assert(find_path(v_start ^ E[id_start], targ, cur_path));
-        int v = v_start;
-        vector<int> path_vtx{v};
+        /* we list all vertexes of path to path_vtx */
+        int cur_v = v_start;
+        vector<int> path_vtx{cur_v};
         for (int x : cur_path) {
             state[x] = 2;
-            v = v ^ E[x];
-            path_vtx.emplace_back(v);
-            placed.insert(v);
+            cur_v = cur_v ^ E[x];
+            path_vtx.emplace_back(cur_v);
+            placed.insert(cur_v);
         }
+        /* this code splits Face into two by our path */
         vector<int> fst, snd;
         auto & f = faces[good_faces[0]];
         int pos = 0;
@@ -260,10 +268,12 @@ bool check(int c) {
         std::reverse(path_vtx.begin(), path_vtx.end());
         for (int v : path_vtx) snd.emplace_back(v);
         swap(faces[good_faces[0]], faces.back());
+        /* remove old face and segment, add new faces */
         faces.pop_back();
         faces.emplace_back(fst);
         faces.emplace_back(snd);
         segments.pop_back();
+        /* compute new segments */
         for (int v : path_vtx) {
             for (int x : g2[v]) if (state[x] == 0) {
                 segments.emplace_back(v, x);
@@ -275,7 +285,9 @@ bool check(int c) {
     }
     return true;
 }
-
+/*
+ * this functions recursively (with depth-first-search) paints two-connected components and calls check()
+ */
 int max_color = 1;
 void dfs(int v, int c) {
     color[v] = c;
