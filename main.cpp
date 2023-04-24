@@ -70,21 +70,36 @@ void calculate_dp(int v) {
     }
 }
 /*
+ * code below is used to check if two-connected component planar
  *
+ * max_color2 is max_color2
+ * vtx is vector of all vertexes that belongs to current two-connected component
+ * vtx_set is a set that contains all vertexes from vtx
+ * g2 is graph, induced by vertexes of component
+ * E for each edge (u, v) it contains u ^ v (it is used to easily determine the neighbour)
+ * state[edge] is a state of edge. it is:
+ *      2 if edge has already been embedded,
+ *      1 if it belongs to segment and was watched,
+ *      0 if it hasn't been watched yet
+ * color2 is like color but for in-component usage
+ * placed contains all vertexes that have been already embedded
  */
 int max_color2 = 0;
 vector<int> vtx, g2[N];
-int E[M], state[M], col2[N];
+int E[M], state[M], color2[N];
 set<int> vtx_set, placed;
+/*
+ * 
+ */
 bool find_path(int v, int targ, vector<int> & cur_path) {
-    col2[v] = max_color2;
+    color2[v] = max_color2;
     for (int id : g2[v]) if (id != cur_path.back()) {
         int to = v ^ E[id];
         if (to == targ) {
             cur_path.emplace_back(id);
             return true;
         }
-        if (!placed.contains(to) && col2[to] != max_color2) {
+        if (!placed.contains(to) && color2[to] != max_color2) {
             cur_path.emplace_back(id);
             if (find_path(to, targ, cur_path)) return true;
             cur_path.pop_back();
