@@ -13,17 +13,29 @@ set<int> g[N];
 int color[N], height[N], dp[N];
 int n, m;
 long start_time;
+/*
+ * this function is used to just output result. nothing interesting
+ */
 void output_result(bool planar) {
     cout << "The given graph is" << (planar ? " " : " not ") << "planar" << '\n';
     cerr << double(::clock() - start_time) * 1e3 / CLOCKS_PER_SEC << "ms\n";
     exit(0);
 }
+/*
+ * this function is used to recursively (with depth-first-search) paint connectivity component to color c
+ * CAUTION: at the moment of call all vertexes in component must have color[v] != c
+ */
 void paint_component(int v, int c) {
     color[v] = c;
     for (int to : g[v]) {
         if (color[to] != c) paint_component(to, c);
     }
 }
+/*
+ * code below is used to find all bridges in the connectivity component at linear time
+ * it recursively (with depth-first-search) calculates dp[v] and determines if the edge is bridge
+ * CAUTION: at the moment of call all vertexes in component must have color[v] == 0
+ */
 vector<pair<int, int>> bridges;
 void find_bridges(int v, int parent) {
     color[v] = 1;
@@ -39,6 +51,11 @@ void find_bridges(int v, int parent) {
         }
     }
 }
+/*
+ * this function does what it states:
+ * it recursively (with depth-first-search) calculates dp[v]
+ * CAUTION: at the moment of call all vertexes in component must have color[v] == 0
+ */
 void calculate_dp(int v) {
     color[v] = 1;
     dp[v] = height[v];
@@ -52,19 +69,22 @@ void calculate_dp(int v) {
         }
     }
 }
-int color2 = 0;
+/*
+ *
+ */
+int max_color2 = 0;
 vector<int> vtx, g2[N];
-int E[M], stat[M], col2[N];
+int E[M], state[M], col2[N];
 set<int> vtx_set, placed;
 bool find_path(int v, int targ, vector<int> & cur_path) {
-    col2[v] = color2;
+    col2[v] = max_color2;
     for (int id : g2[v]) if (id != cur_path.back()) {
         int to = v ^ E[id];
         if (to == targ) {
             cur_path.emplace_back(id);
             return true;
         }
-        if (!placed.contains(to) && col2[to] != color2) {
+        if (!placed.contains(to) && col2[to] != max_color2) {
             cur_path.emplace_back(id);
             if (find_path(to, targ, cur_path)) return true;
             cur_path.pop_back();
@@ -73,8 +93,8 @@ bool find_path(int v, int targ, vector<int> & cur_path) {
     return false;
 }
 void paint_segment(int v, int c, set<int> & touching_vtx) {
-    for (int id : g2[v]) if (stat[id] != c) {
-        stat[id] = c;
+    for (int id : g2[v]) if (state[id] != c) {
+            state[id] = c;
         int to = v ^ E[id];
         if (!placed.contains(to)) paint_segment(to, c, touching_vtx);
         else touching_vtx.insert(to);
@@ -126,13 +146,13 @@ bool check(int c) {
         int v = vtx[0];
         assert(!g2[v].empty());
         cur_path.emplace_back(g2[v][0]);
-        color2++;
+        max_color2++;
         assert(find_path(v ^ E[g2[v][0]], v, cur_path));
         for (int id : cur_path) {
             placed.insert(v);
             cycle.emplace_back(v);
             v ^= E[id];
-            stat[id] = 2;
+            state[id] = 2;
         }
         faces.emplace_back(cycle);
         faces.emplace_back(cycle);
@@ -140,12 +160,12 @@ bool check(int c) {
     vector<Segment> segments;
     { /* COMPUTING SEGMENTS */
         for (int v : placed) {
-            for (int id : g2[v]) if (stat[id] == 0) {
+            for (int id : g2[v]) if (state[id] == 0) {
                 segments.emplace_back(v, id);
                 int to = v ^ E[id];
                 if (placed.contains(to)) {
                     segments.back().touch = {v, to};
-                    stat[id] = 1;
+                    state[id] = 1;
                 } else {
                     paint_segment(v ^ E[id], 1, segments.back().touch);
                 }
@@ -178,12 +198,12 @@ bool check(int c) {
         if (targ == v_start) targ = *touch.rbegin();
         if (!placed.contains(v_start ^ E[id_start])) paint_segment(v_start ^ E[id_start], 0, touch);
         vector<int> cur_path{id_start};
-        color2++;
+        max_color2++;
         if (!placed.contains(v_start ^ E[id_start])) assert(find_path(v_start ^ E[id_start], targ, cur_path));
         int v = v_start;
         vector<int> path_vtx{v};
         for (int x : cur_path) {
-            stat[x] = 2;
+            state[x] = 2;
             v = v ^ E[x];
             path_vtx.emplace_back(v);
             placed.insert(v);
@@ -207,7 +227,7 @@ bool check(int c) {
         faces.emplace_back(snd);
         segments.pop_back();
         for (int v : path_vtx) {
-            for (int x : g2[v]) if (stat[x] == 0) {
+            for (int x : g2[v]) if (state[x] == 0) {
                 segments.emplace_back(v, x);
                 int to = v ^ E[x];
                 if (!placed.contains(to)) paint_segment(to, 1, segments.back().touch);
@@ -218,15 +238,15 @@ bool check(int c) {
     return true;
 }
 
-int maxc = 1;
+int max_color = 1;
 void dfs(int v, int c) {
     color[v] = c;
     for (int to : g[v]) if (color[to] == 0) {
         if (dp[to] >= height[v]) {
-            int new_col = maxc++;
-            dfs(to, new_col);
-            color[v] = new_col;
-            if (!check(new_col)) output_result(false);
+            int new_color = max_color++;
+            dfs(to, new_color);
+            color[v] = new_color;
+            if (!check(new_color)) output_result(false);
             color[v] = c;
         } else {
             dfs(to, c);
@@ -255,7 +275,7 @@ void solve() {
     for (int v = 0; v < n; ++v) if (color[v] == 0) calculate_dp(v);
     fill(color, color + n, 0);
     for (int v = 0; v < n; ++v) if (color[v] == 0) {
-        int c = maxc++;
+        int c = max_color++;
         dfs(v, c);
         if (!check(c)) output_result(false);
     }
