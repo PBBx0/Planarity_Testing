@@ -7,7 +7,7 @@ int col[N], h[N], dp[N];
 int n, m;
 long start_time;
 void output_result(bool planar) {
-    cout << "The given graph is" << (planar ? " " : " not ") << "planar" << '\n';
+    cout << "This graph is" << (planar ? " " : " not ") << "planar." << '\n';
     cerr << double(::clock() - start_time) * 1e3 / CLOCKS_PER_SEC << "ms\n";
     exit(0);
 }
