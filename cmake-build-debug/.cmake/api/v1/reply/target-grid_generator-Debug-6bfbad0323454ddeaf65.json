@@ -118,7 +118,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "generators/rectangle_grid_generator.cpp",
+			"path" : "util/rectangle_grid_generator.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

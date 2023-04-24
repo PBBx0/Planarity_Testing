@@ -118,7 +118,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "generators/graph_generator.cpp",
+			"path" : "util/graph_generator.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

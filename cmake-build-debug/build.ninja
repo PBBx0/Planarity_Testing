@@ -81,12 +81,12 @@ build solve: CXX_EXECUTABLE_LINKER__solve_Debug CMakeFiles/solve.dir/main.cpp.o
 
 build cmake_object_order_depends_target_random_generator: phony || CMakeFiles/random_generator.dir
 
-build CMakeFiles/random_generator.dir/generators/graph_generator.cpp.o: CXX_COMPILER__random_generator_Debug /home/pbb/programs/aesc_homework/Planarity_Testing/generators/graph_generator.cpp || cmake_object_order_depends_target_random_generator
+build CMakeFiles/random_generator.dir/util/graph_generator.cpp.o: CXX_COMPILER__random_generator_Debug /home/pbb/programs/aesc_homework/Planarity_Testing/util/graph_generator.cpp || cmake_object_order_depends_target_random_generator
   DEFINES = -DLOCAL -D_GLIBCXX_DEBUG
-  DEP_FILE = CMakeFiles/random_generator.dir/generators/graph_generator.cpp.o.d
+  DEP_FILE = CMakeFiles/random_generator.dir/util/graph_generator.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++20
   OBJECT_DIR = CMakeFiles/random_generator.dir
-  OBJECT_FILE_DIR = CMakeFiles/random_generator.dir/generators
+  OBJECT_FILE_DIR = CMakeFiles/random_generator.dir/util
 
 
 # =============================================================================
@@ -96,7 +96,7 @@ build CMakeFiles/random_generator.dir/generators/graph_generator.cpp.o: CXX_COMP
 #############################################
 # Link the executable random_generator
 
-build random_generator: CXX_EXECUTABLE_LINKER__random_generator_Debug CMakeFiles/random_generator.dir/generators/graph_generator.cpp.o
+build random_generator: CXX_EXECUTABLE_LINKER__random_generator_Debug CMakeFiles/random_generator.dir/util/graph_generator.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/random_generator.dir
   POST_BUILD = :
@@ -113,12 +113,12 @@ build random_generator: CXX_EXECUTABLE_LINKER__random_generator_Debug CMakeFiles
 
 build cmake_object_order_depends_target_grid_generator: phony || CMakeFiles/grid_generator.dir
 
-build CMakeFiles/grid_generator.dir/generators/rectangle_grid_generator.cpp.o: CXX_COMPILER__grid_generator_Debug /home/pbb/programs/aesc_homework/Planarity_Testing/generators/rectangle_grid_generator.cpp || cmake_object_order_depends_target_grid_generator
+build CMakeFiles/grid_generator.dir/util/rectangle_grid_generator.cpp.o: CXX_COMPILER__grid_generator_Debug /home/pbb/programs/aesc_homework/Planarity_Testing/util/rectangle_grid_generator.cpp || cmake_object_order_depends_target_grid_generator
   DEFINES = -DLOCAL -D_GLIBCXX_DEBUG
-  DEP_FILE = CMakeFiles/grid_generator.dir/generators/rectangle_grid_generator.cpp.o.d
+  DEP_FILE = CMakeFiles/grid_generator.dir/util/rectangle_grid_generator.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++20
   OBJECT_DIR = CMakeFiles/grid_generator.dir
-  OBJECT_FILE_DIR = CMakeFiles/grid_generator.dir/generators
+  OBJECT_FILE_DIR = CMakeFiles/grid_generator.dir/util
 
 
 # =============================================================================
@@ -128,7 +128,7 @@ build CMakeFiles/grid_generator.dir/generators/rectangle_grid_generator.cpp.o: C
 #############################################
 # Link the executable grid_generator
 
-build grid_generator: CXX_EXECUTABLE_LINKER__grid_generator_Debug CMakeFiles/grid_generator.dir/generators/rectangle_grid_generator.cpp.o
+build grid_generator: CXX_EXECUTABLE_LINKER__grid_generator_Debug CMakeFiles/grid_generator.dir/util/rectangle_grid_generator.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/grid_generator.dir
   POST_BUILD = :
