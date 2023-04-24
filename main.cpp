@@ -3,26 +3,26 @@
 using namespace std;
 const int N = 10000, M = 50000;
 set<int> g[N];
-int col[N], h[N], dp[N];
+int color[N], h[N], dp[N];
 int n, m;
 long start_time;
 void output_result(bool planar) {
-    cout << "This graph is" << (planar ? " " : " not ") << "planar." << '\n';
+    cout << "The given graph is" << (planar ? " " : " not ") << "planar" << '\n';
     cerr << double(::clock() - start_time) * 1e3 / CLOCKS_PER_SEC << "ms\n";
     exit(0);
 }
 void paint(int v, int c) {
-    col[v] = c;
+    color[v] = c;
     for (int to : g[v]) {
-        if (col[to] != c) paint(to, c);
+        if (color[to] != c) paint(to, c);
     }
 }
 vector<pair<int, int>> bridges;
 void find_bridges(int v, int par) {
-    col[v] = 1;
+    color[v] = 1;
     dp[v] = h[v];
     for (int to : g[v]) if (to != par) {
-        if (col[to] == 0) {
+        if (color[to] == 0) {
             h[to] = h[v] + 1;
             find_bridges(to, v);
             dp[v] = min(dp[v], dp[to]);
@@ -33,10 +33,10 @@ void find_bridges(int v, int par) {
     }
 }
 void calc_dp(int v) {
-    col[v] = 1;
+    color[v] = 1;
     dp[v] = h[v];
     for (int to : g[v]) {
-        if (col[to] == 0) {
+        if (color[to] == 0) {
             h[to] = h[v] + 1;
             calc_dp(to);
             dp[v] = min(dp[v], dp[to]);
@@ -94,7 +94,7 @@ bool check(int c) {
     int top = 0;
     for (auto & ar : g2) ar.clear();
     for (int v = 0; v < n; ++v) {
-        if (col[v] == c) {
+        if (color[v] == c) {
             vtx.emplace_back(v);
             vtx_set.insert(v);
         }
@@ -213,14 +213,14 @@ bool check(int c) {
 
 int maxc = 1;
 void dfs(int v, int c) {
-    col[v] = c;
-    for (int to : g[v]) if (col[to] == 0) {
+    color[v] = c;
+    for (int to : g[v]) if (color[to] == 0) {
         if (dp[to] >= h[v]) {
             int new_col = maxc++;
             dfs(to, new_col);
-            col[v] = new_col;
+            color[v] = new_col;
             if (!check(new_col)) output_result(false);
-            col[v] = c;
+            color[v] = c;
         } else {
             dfs(to, c);
         }
@@ -230,7 +230,7 @@ void dfs(int v, int c) {
 
 void solve() {
     cin >> n >> m;
-    fill(col, col + n, 0);
+    fill(color, color + n, 0);
     for (int i = 0; i < m; ++i) {
         int a, b;
         cin >> a >> b;
@@ -239,15 +239,15 @@ void solve() {
         g[a].insert(b);
         g[b].insert(a);
     }
-    for (int v = 0; v < n; ++v) if (col[v] == 0) find_bridges(v, v);
+    for (int v = 0; v < n; ++v) if (color[v] == 0) find_bridges(v, v);
     for (auto [u, v] : bridges) {
         g[u].erase(v);
         g[v].erase(u);
     }
-    fill(col, col + n, 0);
-    for (int v = 0; v < n; ++v) if (col[v] == 0) calc_dp(v);
-    fill(col, col + n, 0);
-    for (int v = 0; v < n; ++v) if (col[v] == 0) {
+    fill(color, color + n, 0);
+    for (int v = 0; v < n; ++v) if (color[v] == 0) calc_dp(v);
+    fill(color, color + n, 0);
+    for (int v = 0; v < n; ++v) if (color[v] == 0) {
         int c = maxc++;
         dfs(v, c);
         if (!check(c)) output_result(false);
