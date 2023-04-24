@@ -2,8 +2,15 @@
 #define sz(n) (int)(n).size()
 using namespace std;
 const int N = 10000, M = 50000;
+/*
+ * g[v] is a set containing neighbours of v
+ * color[v] is a current state of vertex v
+ * height[v] denotes height of vertex tree in palm tree
+ * dp[v] is minimum height of vertex that is accessible from subtree of v with no more than one backedge
+ * n, m is a number of vertexes and edges respectively
+ */
 set<int> g[N];
-int color[N], h[N], dp[N];
+int color[N], height[N], dp[N];
 int n, m;
 long start_time;
 void output_result(bool planar) {
@@ -11,37 +18,37 @@ void output_result(bool planar) {
     cerr << double(::clock() - start_time) * 1e3 / CLOCKS_PER_SEC << "ms\n";
     exit(0);
 }
-void paint(int v, int c) {
+void paint_component(int v, int c) {
     color[v] = c;
     for (int to : g[v]) {
-        if (color[to] != c) paint(to, c);
+        if (color[to] != c) paint_component(to, c);
     }
 }
 vector<pair<int, int>> bridges;
-void find_bridges(int v, int par) {
+void find_bridges(int v, int parent) {
     color[v] = 1;
-    dp[v] = h[v];
-    for (int to : g[v]) if (to != par) {
+    dp[v] = height[v];
+    for (int to : g[v]) if (to != parent) {
         if (color[to] == 0) {
-            h[to] = h[v] + 1;
+            height[to] = height[v] + 1;
             find_bridges(to, v);
             dp[v] = min(dp[v], dp[to]);
-            if (dp[to] > h[v]) bridges.emplace_back(v, to);
+            if (dp[to] > height[v]) bridges.emplace_back(v, to);
         } else {
-            dp[v] = min(dp[v], h[to]);
+            dp[v] = min(dp[v], height[to]);
         }
     }
 }
-void calc_dp(int v) {
+void calculate_dp(int v) {
     color[v] = 1;
-    dp[v] = h[v];
+    dp[v] = height[v];
     for (int to : g[v]) {
         if (color[to] == 0) {
-            h[to] = h[v] + 1;
-            calc_dp(to);
+            height[to] = height[v] + 1;
+            calculate_dp(to);
             dp[v] = min(dp[v], dp[to]);
         } else {
-            dp[v] = min(dp[v], h[to]);
+            dp[v] = min(dp[v], height[to]);
         }
     }
 }
@@ -215,7 +222,7 @@ int maxc = 1;
 void dfs(int v, int c) {
     color[v] = c;
     for (int to : g[v]) if (color[to] == 0) {
-        if (dp[to] >= h[v]) {
+        if (dp[to] >= height[v]) {
             int new_col = maxc++;
             dfs(to, new_col);
             color[v] = new_col;
@@ -245,7 +252,7 @@ void solve() {
         g[v].erase(u);
     }
     fill(color, color + n, 0);
-    for (int v = 0; v < n; ++v) if (color[v] == 0) calc_dp(v);
+    for (int v = 0; v < n; ++v) if (color[v] == 0) calculate_dp(v);
     fill(color, color + n, 0);
     for (int v = 0; v < n; ++v) if (color[v] == 0) {
         int c = maxc++;
