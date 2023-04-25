@@ -1,8 +1,6 @@
-import math
 from subprocess import run
 import os, draw
 import matplotlib.pyplot as plt
-import numpy
 
 run(["g++", "-std=c++20", "-O3", "main.cpp", "-o", "solve"])
 tests = os.listdir("./tests")
@@ -29,4 +27,4 @@ plt.clf()
 plt.xlabel("Количество вершин в графе")
 plt.ylabel("Время работы в миллисекундах")
 plt.plot(x, y)
-plt.savefig("time effiquency.png")
+plt.savefig("time efficiency.png")
